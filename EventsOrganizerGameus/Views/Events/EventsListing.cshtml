@@ -1,0 +1,53 @@
+﻿@model OA.CQRS.Query.Event.Listing.GetEventsQuery
+
+<div class="events-search-listing">
+    <div class="search-panel">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" />
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="CategoryId" class="control-label"></label>
+                        <select asp-for="CategoryId" asp-items="@Model.CategoryIds">
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <button type="button" id="search-events" class="btn btn-primary btn-search">
+                            <i class="fa fa-search"></i>
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="events-listing-panel">
+        <div class="listing-panel">
+            <a asp-controller="Events" asp-action="CreateEvent" id="delete-event">Create</a>
+            @foreach (var events in Model.EventsModel)
+            {
+                <div class="card">
+                    <img class="card-img-top" src="@events.ImagePath" />
+                    <div class="card-body">
+                        <h3 class="card-title">@events.Name</h3>
+                        <p class="card-text">ფასი : @events.Price</p>
+                        <p class="card-text">კატეგორია : @events.CategoryName</p>
+                        <p class="card-text">მისამართი : @events.Address</p>
+                        <p class="card-text">თარიღი : @events.StartDate @events.EndDate</p>
+                        <p class="card-text">@events.Description</p>
+                    </div>
+                    <div class="card-body">
+                        <a asp-controller="Events" asp-action="DeleteEvent" asp-route-id="@events.Id" id="delete-event" class="card-link">Delete</a>
+                        <a asp-controller="Events" asp-action="UpdateEvent" asp-route-id="@events.Id" id="delete-event" class="card-link">Update</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
