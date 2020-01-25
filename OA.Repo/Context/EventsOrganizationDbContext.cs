@@ -12,7 +12,7 @@ namespace OA.Repo.Context
         {
             //ToDo : connection string from appsettings
             optionsBuilder.UseLazyLoadingProxies()
-                .UseSqlServer("Server=DESKTOP-OKIRIV8; Database=Events; Trusted_Connection=True");
+                .UseSqlServer("Server=YourDb; Database=Events; Trusted_Connection=True");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
